@@ -1,7 +1,19 @@
 const Todo = require('../models/todo.js');
 
-exports.getTodos = (req, res, next) => {
+exports.getTodos = async (req, res, next) => {
+    const limit = req.query.limit? Number(req.query.limit) : 10;
+    const offset = 0 + ((req.query.page? Number(req.query.page) : 1) - 1) * limit;
     
+    try{
+        const todos = await Todo.findAndCountAll({
+            offset: offset,
+            limit: limit,
+            order: [['createdAt', 'ASC']]
+        });
+        return res.status(200).json({status: 200, data: todos, message: `Successfully fetched ${todos.rows.length} todos`});
+    }catch(e){
+        return res.status(400).json({status:400, message: e.message});
+    }
 };
 
 exports.createTodo = async (req, res, next) => {
@@ -41,6 +53,20 @@ exports.updateTodo = async (req, res, next) => {
     }
 };
 
-exports.deleteTodo = (req, res, next) => {
-
+exports.deleteTodo = async (req, res, next) => {
+    if (!req.body.id){
+        return res.status(400).json({status: 400, message: 'Id must be present'});
+    }
+    const id = req.body.id;
+    try{
+        const todo = await Todo.findByPk(id);
+        try{
+            const result = await todo.destroy();
+            return res.status(400).json({status: 400, data: result, message: 'Todo successfully deleted'});
+        }catch(e){
+            return res.status(400).json({status: 400, message: e.message});
+        }
+    }catch(e){
+        return res.status(400).json({status: 400, message: e.message});
+    }
 };
