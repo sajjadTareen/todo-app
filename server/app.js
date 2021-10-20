@@ -11,8 +11,7 @@ const Todo = require('./models/todo');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, '/public')));
 
-app.use('/todo', todoRoutes);
-
+app.use('/', todoRoutes);
 
 sequelize.sync()
 .then(result => app.listen(3000))
