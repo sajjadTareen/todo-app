@@ -22,7 +22,6 @@ export class TodosComponent implements OnInit {
     this.dataService.getAllTodos().subscribe(res => {
     if (res['status'] == 200){
       this.todos = res['data']['rows'];
-      console.log(this.todos[0]);
     }
     }, err => console.log("THIS IS ERROR"));
   }
@@ -36,21 +35,21 @@ export class TodosComponent implements OnInit {
     // form.reset()
   }
 
-  toggleCompleted(todo: Todo) {
-    todo.completed = !todo.completed;
+  toggleCompleted(todo: any) {
+    todo.status = todo.status == 'completed'? 'completed' : 'incomplete';
   }
 
   editTodo(todo: Todo) {
-    const index = this.todos.indexOf(todo)
-
-    let dialogRef = this.dialog.open(EditTodoDialogComponent, {
+        let dialogRef = this.dialog.open(EditTodoDialogComponent, {
       width: '700px',
       data: todo
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.dataService.updateTodo(index, result)
+        this.dataService.updateTodo(result).subscribe(res =>{
+          console.log(res['message']);
+        })
       }
     })
   }

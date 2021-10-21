@@ -22,9 +22,11 @@ export class DataService {
     //this.todos.push(todo)
   }
 
-  updateTodo(id: number, updatedTodo: Todo) {
+  updateTodo(updatedTodo: Todo) {
     let url= "http://localhost:3000/"
-    return this.http.put(url,id);
+    const body = updatedTodo;
+    console.log(updatedTodo);
+    return this.http.put(url,body);
   }
 
   deleteTodo(index: number) {
