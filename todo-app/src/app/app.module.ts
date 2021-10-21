@@ -13,6 +13,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ToolTipDirective } from './shared/tool-tip.directive';
 import { ToolTipSingletonDirective } from './shared/tool-tip-singleton.directive';
 
+import {HttpClientModule} from '@angular/common/http'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,8 @@ import { ToolTipSingletonDirective } from './shared/tool-tip-singleton.directive
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
