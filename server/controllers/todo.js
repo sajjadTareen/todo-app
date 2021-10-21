@@ -33,6 +33,7 @@ exports.createTodo = async (req, res, next) => {
 
 exports.updateTodo = async (req, res, next) => {
     if (!req.body.id){
+        console.log(req.body)
         return res.status(400).json({status: 400, message: 'Id must be present'});
     }
 

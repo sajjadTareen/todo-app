@@ -14,22 +14,30 @@ export class DataService {
   constructor(private http:HttpClient) { }
 
   getAllTodos() {
+<<<<<<< HEAD
     let url= "https://jsonplaceholder.typicode.com/todos"
     // return this.http.get(url);
     // console.log(this.todos)
     return this.todos
+=======
+    let url= "http://localhost:3000/"
+    return this.http.get(url);
+>>>>>>> 960c28b5d8d2e71bef05986d3425cbca2924742d
   }
 
   addTodo(todo: Todo) {
-    this.todos.push(todo)
+    //this.todos.push(todo)
   }
 
-  updateTodo(index: number, updatedTodo: Todo) {
-    this.todos[index] = updatedTodo
+  updateTodo(updatedTodo: Todo) {
+    let url= "http://localhost:3000/"
+    const body = updatedTodo;
+    console.log(updatedTodo);
+    return this.http.put(url,body);
   }
 
   deleteTodo(index: number) {
-    this.todos.splice(index, 1)
+    //this.todos.splice(index, 1)
   }
   
 }

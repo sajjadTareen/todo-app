@@ -4,8 +4,9 @@
     </div>
 
     <div class="todo-text">
-        {{ todo.text }}
+        {{ todo.title }}
     </div>
+    
 
     <div class="todo-controls-box" appToolTipSingleton (click)="$event.stopPropagation()">
         <div class="todo-control-button" appToolTip="Edit Todo" (click)="onEditClicked()">
