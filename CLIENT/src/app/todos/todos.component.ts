@@ -18,7 +18,9 @@ export class TodosComponent implements OnInit {
   constructor(private dataService: DataService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.todos = this.dataService.getAllTodos()
+    this.dataService.getAllTodos().subscribe(res => {
+      return res;
+    })
   }
 
   onFormSubmit(form: NgForm) {   

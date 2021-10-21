@@ -16,6 +16,7 @@ export class DataService {
   getAllTodos() {
     let url= "https://jsonplaceholder.typicode.com/todos"
     // return this.http.get(url);
+    // console.log(this.todos)
     return this.todos
   }
 
