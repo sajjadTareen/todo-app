@@ -12,9 +12,7 @@ import { EditTodoDialogComponent } from './edit-todo-dialog/edit-todo-dialog.com
 import { MatDialogModule } from '@angular/material/dialog';
 import { ToolTipDirective } from './shared/tool-tip.directive';
 import { ToolTipSingletonDirective } from './shared/tool-tip-singleton.directive';
-
-import {HttpClientModule} from '@angular/common/http'
-
+import {HttpClientModule, } from '@angular/common/http'
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +28,7 @@ import {HttpClientModule} from '@angular/common/http'
     FormsModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

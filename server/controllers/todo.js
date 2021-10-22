@@ -33,13 +33,13 @@ exports.createTodo = async (req, res, next) => {
 };
 
 exports.updateTodo = async (req, res, next) => {
+    
+    console.log(req.body);
     if (!req.body.id){
-        console.log(req.body)
         return res.status(400).json({status: 400, message: 'Id must be present'});
     }
-
-    const id = req.body.id;
     try{
+        const id = req.body.id;
         const todo = await Todo.findByPk(id);
         todo.title = req.body.title? req.body.title: todo.title;
         todo.desc = req.body.desc? req.body.desc: todo.desc;
