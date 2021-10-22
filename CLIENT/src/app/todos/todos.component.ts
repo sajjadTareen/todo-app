@@ -4,6 +4,8 @@ import { DataService } from '../shared/data.service';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { EditTodoDialogComponent } from '../edit-todo-dialog/edit-todo-dialog.component';
+import { title } from 'process';
+
 
 @Component({
   selector: 'app-todos',
@@ -13,31 +15,24 @@ import { EditTodoDialogComponent } from '../edit-todo-dialog/edit-todo-dialog.co
 
 export class TodosComponent implements OnInit {
 
-  todos: any[]
+  todos: Todo[]
   showValidationErrors: boolean
 
   constructor(private dataService: DataService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.dataService.getAllTodos().subscribe(res => {
-<<<<<<< HEAD
-      return res;
-    })
-=======
     if (res['status'] == 200){
       this.todos = res['data']['rows'];
+      
     }
     }, err => console.log("THIS IS ERROR"));
->>>>>>> 960c28b5d8d2e71bef05986d3425cbca2924742d
   }
 
-  onFormSubmit(form: NgForm) {   
-    // if (form.invalid) return this.showValidationErrors = true
+  onFormSubmit(form: Todo) {
+    this.dataService.addTodo(form).subscribe(result => {
+    });
 
-    // this.dataService.addTodo(new Todo(form.value.text))
-
-    // this.showValidationErrors = false
-    // form.reset()
   }
 
   toggleCompleted(todo: any) {

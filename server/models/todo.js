@@ -5,7 +5,7 @@ const Todo = sequelize.define('todo', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
-        allowNull: false,
+        allowNull: true,
         primaryKey: true
     },
     
@@ -21,7 +21,7 @@ const Todo = sequelize.define('todo', {
 
     status: {
         type:Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     }
 });
 

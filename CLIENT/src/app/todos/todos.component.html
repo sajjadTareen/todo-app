@@ -5,12 +5,17 @@
 <div class="container add-todo-box-container">
   <div class="add-todo-box">
 
-    <form #form="ngForm" (ngSubmit)="onFormSubmit(form)">
+    <form #form="ngForm" (ngSubmit)="onFormSubmit(form.value)">
       <h2 class="title is-5">New Todo</h2>
 
       <div class="field is-grouped" style="margin: 0">
         <p class="control is-expanded">
-          <input ngModel #todoTextField="ngModel" required minlength="2" name="text" class="input" type="text" placeholder="Type todo text here ...">
+          
+          <input ngModel #todoTextField="ngModel" required minlength="2" name="title" class="input" type="text" placeholder="Type todo title here ...">
+        </p>
+        <br/>
+        <p class="control is-expanded">
+          <input ngModel #tododescField="ngModel" required minlength="2" name="desc" class="input" type="text" placeholder="Type todo description here ...">
         </p>
         <p class="control">
           <button type="submit" class="button alt-gradient-button">
