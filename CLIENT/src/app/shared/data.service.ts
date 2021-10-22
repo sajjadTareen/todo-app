@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Todo } from './todo.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +13,7 @@ export class DataService {
     // new Todo('Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit voluptates dolorem alias dolores deserunt, qui, amet odio facilis tempora unde sequi numquam explicabo nihil iste labore beatae ea rerum expedita.', true)
   ]
   
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   getAllTodos() {
     let url= "http://localhost:3000/"
@@ -22,11 +24,9 @@ export class DataService {
     //this.todos.push(todo)
   }
 
-  updateTodo(updatedTodo: Todo) {
+  updateTodo(updatedTodo: any) {
     let url= "http://localhost:3000/"
-    const body = updatedTodo;
-    console.log(updatedTodo);
-    return this.http.put(url,body);
+      return this.http.put(url, updatedTodo);
   }
 
   deleteTodo(index: number) {
