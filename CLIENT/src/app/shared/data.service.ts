@@ -20,8 +20,11 @@ export class DataService {
     return this.http.get(url);
   }
 
-  addTodo(todo: Todo) {
-    //this.todos.push(todo)
+  addTodo(todo: any) {
+    
+    let url= "http://localhost:3000/"
+    return this.http.post(url,todo);
+   
   }
 
   updateTodo(updatedTodo: any) {

@@ -4,12 +4,21 @@
     <form #form="ngForm" (ngSubmit)="onFormSubmit(form)">
         <div class="field">
             <div class="control">
-                <input
+                <p>Title:</p><input
                     type="text"
                     class="input"
                     [ngModel]="todo.title"
                     #todoTextField="ngModel"
                     name="title"
+                    required
+                    minlength="2"
+                    placeholder="Type todo text here...">
+                    <p>Description:</p><input
+                    type="text"
+                    class="input"
+                    [ngModel]="todo.desc"
+                    #tododescField="ngModel"
+                    name="desc"
                     required
                     minlength="2"
                     placeholder="Type todo text here...">

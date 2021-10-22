@@ -4,7 +4,6 @@ export class Todo {
         public title: string,
         public desc: string,
         public completed: boolean = false,
-
         public text: string
     ) {}
 }

@@ -17,15 +17,16 @@ exports.getTodos = async (req, res, next) => {
 };
 
 exports.createTodo = async (req, res, next) => {
-
+    console.log(JSON.stringify(req.body))
     const todo = {
         title: req.body.title,
         desc: req.body.desc,
         status: req.body.status
     };
+    console.log(todo);
     try{
         const createdTodo = await Todo.create(todo);
-        return res.status(200).json({status: 200, data: createdTodo, message: 'Successfully Todos Recieved'});
+        return res.status(200).json({status: 201, data: createdTodo, message: 'Successfully Todos Recieved'});
     }catch(e){
         return res.status(400).json({status:400, message: e.message});
     }
