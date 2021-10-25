@@ -65,7 +65,7 @@ exports.deleteTodo = async (req, res, next) => {
         const todo = await Todo.findByPk(id);
         try{
             const result = await todo.destroy();
-            return res.status(400).json({status: 400, data: result, message: 'Todo successfully deleted'});
+            return res.status(200).json({status: 200, data: result, message: 'Todo successfully deleted'});
         }catch(e){
             return res.status(400).json({status: 400, message: e.message});
         }

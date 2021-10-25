@@ -25,9 +25,9 @@ export class TodosComponent implements OnInit {
   }
   refreshTodos(): void{
     this.dataService.getAllTodos().subscribe(res => {
-      if (res['status'] == 200){
-l        
-      }
+        if (res['status'] == 200){
+          this.todos = res['data']['rows'];
+        }
       }, err => console.log("THIS IS ERROR"));
   }
 
