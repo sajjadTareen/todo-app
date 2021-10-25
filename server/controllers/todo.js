@@ -1,6 +1,16 @@
+const jwt = require('jsonwebtoken');
 const Todo = require('../models/todo.js');
+const User = require('../models/user');
 
 exports.getTodos = async (req, res, next) => {
+
+    let authData;
+    try{
+        authData = await jwt.verify(req.token, secretKey);
+    }catch(e){
+        return res.status(403).json({status:403 , message: e.message});
+    }
+
     const limit = req.query.limit? Number(req.query.limit) : 10;
     const offset = 0 + ((req.query.page? Number(req.query.page) : 1) - 1) * limit;
     
@@ -8,7 +18,8 @@ exports.getTodos = async (req, res, next) => {
         const todos = await Todo.findAndCountAll({
             offset: offset,
             limit: limit,
-            order: [['createdAt', 'ASC']]
+            order: [['createdAt', 'ASC']],
+            where: { userid: authData.user.id}
         });
         return res.status(200).json({status: 200, data: todos, message: `Successfully fetched ${todos.rows.length} todos`});
     }catch(e){

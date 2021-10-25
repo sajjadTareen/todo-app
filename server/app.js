@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors')
+const cors = require('cors');
+const jwt = require('jsonwebtoken');
+
 const sequelize = require('./utils/database');
 const path = require('path');
 
@@ -12,14 +14,20 @@ app.use(function(req, res, next) {
         next();
   });
 
-const todoRoutes = require('./routes/todo');
+const routes = require('./routes/todo');
 const Todo = require('./models/todo');
+const User = require('./models/user');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
 
-app.use('/', todoRoutes);
+app.use('/', routes);
+
+
+
+Todo.belongsTo(User, {constraints: true, onDelete: 'CASCADE'});
+User.hasMany(Todo);
 
 sequelize.sync()
 .then(result => app.listen(3000))
