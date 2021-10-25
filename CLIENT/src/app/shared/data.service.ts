@@ -32,8 +32,11 @@ export class DataService {
       return this.http.put(url, updatedTodo);
   }
 
-  deleteTodo(index: number) {
-    //this.todos.splice(index, 1)
+  deleteTodo(todo: Todo) {
+    console.log(todo)
+    let url= `http://localhost:3000/?id=${todo.id}`
+    console.log(url)
+    return this.http.delete(url)
   }
   
 }

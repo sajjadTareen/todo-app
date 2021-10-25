@@ -17,7 +17,7 @@ exports.getTodos = async (req, res, next) => {
 };
 
 exports.createTodo = async (req, res, next) => {
-    console.log(JSON.stringify(req.body))
+    
     const todo = {
         title: req.body.title,
         desc: req.body.desc,
@@ -56,10 +56,10 @@ exports.updateTodo = async (req, res, next) => {
 };
 
 exports.deleteTodo = async (req, res, next) => {
-    if (!req.body.id){
+    if (!req.query.id){
         return res.status(400).json({status: 400, message: 'Id must be present'});
     }
-    const id = req.body.id;
+    const id = req.query.id;
     try{
         const todo = await Todo.findByPk(id);
         try{
