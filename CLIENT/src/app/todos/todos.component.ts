@@ -28,7 +28,7 @@ export class TodosComponent implements OnInit {
         if (res['status'] == 200){
           this.todos = res['data']['rows'];
         }
-      }, err => console.log("THIS IS ERROR"));
+      }, err => console.log(err));
   }
 
   onFormSubmit(form: any) {
@@ -41,12 +41,10 @@ export class TodosComponent implements OnInit {
   }
 
   toggleCompleted(todo: any) {
-    console.log(todo);
     todo.status = todo.status == 'complete'? 'incomplete' : 'complete';
-    console.log(todo.status);
     this.dataService.updateStatus(todo)
     .subscribe(res => {
-      console.log(res['message']);
+      console.log(res);
       this.refreshTodos();
     }, err => console.log(err))
   }
@@ -60,7 +58,7 @@ export class TodosComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.dataService.updateTodo(result).subscribe(res =>{
-          console.log(res['message']);
+          console.log(res);
           this.refreshTodos();
         })
       }
@@ -69,7 +67,7 @@ export class TodosComponent implements OnInit {
 
   deleteTodo(todo: any) {
     this.dataService.deleteTodo(todo).subscribe(result => {
-      console.log(result['message']);
+      console.log(result);
       this.todos.splice(this.todos.indexOf(todo),1);
       this.refreshTodos();
     }, err => console.log(err));

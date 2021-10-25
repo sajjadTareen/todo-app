@@ -4,8 +4,8 @@
     </div>
 
     <div class="todo-text">
-        <p>Title: {{ todo.title }}</p>
-        <p>Description: {{ todo.desc }}</p>
+        <p style="font-weight:bold" >{{ todo.title }}</p>
+        <p style="font-weight:lighter" >{{ todo.desc }}</p>
     </div>
 
     <div class="todo-controls-box" appToolTipSingleton (click)="$event.stopPropagation()">

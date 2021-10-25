@@ -35,7 +35,7 @@ exports.createTodo = async (req, res, next) => {
 exports.updateTodo = async (req, res, next) => {
     
     if (!req.body.id){
-        return res.status(400).json({status: 400, message: 'Id must be present'});
+        return res.status(400).json({status: 400, message: 'ID must be present'});
     }
     try{
         const id = req.body.id;
@@ -57,7 +57,7 @@ exports.updateTodo = async (req, res, next) => {
 
 exports.deleteTodo = async (req, res, next) => {
     if (!req.query.id){
-        return res.status(400).json({status: 400, message: 'Id must be present'});
+        return res.status(400).json({status: 400, message: 'ID must be present'});
     }
     
     try{
@@ -77,7 +77,7 @@ exports.deleteTodo = async (req, res, next) => {
 exports.updateStatus = async (req, res, next) => {
     
     if (!req.query.id){
-        return res.status(400).json({status: 400, message: 'Id must be present'});
+        return res.status(400).json({status: 400, message: 'ID must be present'});
     }
     try{
         const id = req.query.id;
