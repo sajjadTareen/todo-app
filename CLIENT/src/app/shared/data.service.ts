@@ -32,11 +32,22 @@ export class DataService {
       return this.http.put(url, updatedTodo);
   }
 
+<<<<<<< HEAD
   deleteTodo(todo: Todo) {
     console.log(todo)
     let url= `http://localhost:3000/?id=${todo.id}`
     console.log(url)
     return this.http.delete(url)
+=======
+  deleteTodo(todo : any) {
+    let url= `http://localhost:3000/?id=${todo.id}`
+    return this.http.delete(url);
+  }
+
+  updateStatus(todo : any) {
+    let url= `http://localhost:3000/togStat?id=${todo.id}&status=${todo.status}`
+    return this.http.put(url, todo);
+>>>>>>> b31949fe9be23450b40485e8ddf12516f4e7cf9c
   }
   
 }

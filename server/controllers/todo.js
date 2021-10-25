@@ -34,7 +34,6 @@ exports.createTodo = async (req, res, next) => {
 
 exports.updateTodo = async (req, res, next) => {
     
-    console.log(req.body);
     if (!req.body.id){
         return res.status(400).json({status: 400, message: 'Id must be present'});
     }
@@ -44,6 +43,7 @@ exports.updateTodo = async (req, res, next) => {
         todo.title = req.body.title? req.body.title: todo.title;
         todo.desc = req.body.desc? req.body.desc: todo.desc;
         todo.status = req.body.status? req.body.status: todo.status;
+        console.log(todo.status);
         try{
             const updatedTodo = await todo.save();
             return res.status(200).json({status: 200, data: updatedTodo, message: 'Successfully updated Todos'});
@@ -59,8 +59,13 @@ exports.deleteTodo = async (req, res, next) => {
     if (!req.query.id){
         return res.status(400).json({status: 400, message: 'Id must be present'});
     }
+<<<<<<< HEAD
     const id = req.query.id;
+=======
+    
+>>>>>>> b31949fe9be23450b40485e8ddf12516f4e7cf9c
     try{
+        const id = req.query.id;
         const todo = await Todo.findByPk(id);
         try{
             const result = await todo.destroy();
@@ -70,5 +75,26 @@ exports.deleteTodo = async (req, res, next) => {
         }
     }catch(e){
         return res.status(400).json({status: 400, message: e.message});
+    }
+};
+
+exports.updateStatus = async (req, res, next) => {
+    
+    if (!req.query.id){
+        return res.status(400).json({status: 400, message: 'Id must be present'});
+    }
+    try{
+        const id = req.query.id;
+        const todo = await Todo.findByPk(id);
+        todo.status = req.query.status
+        console.log(todo.status);
+        try{
+            const updatedTodo = await todo.save();
+            return res.status(200).json({status: 200, data: updatedTodo, message: 'Successfully updated Status'});
+        }catch(e){
+            return res.status(400).json({status:400, message: e.message});
+        }
+    }catch(e){
+        return res.status(400).json({status:400, message: e.message});
     }
 };

@@ -21,22 +21,34 @@ export class TodosComponent implements OnInit {
   constructor(private dataService: DataService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.refreshTodos();
+  }
+  refreshTodos(): void{
     this.dataService.getAllTodos().subscribe(res => {
-    if (res['status'] == 200){
-      this.todos = res['data']['rows'];
-      
-    }
-    }, err => console.log("THIS IS ERROR"));
+      if (res['status'] == 200){
+l        
+      }
+      }, err => console.log("THIS IS ERROR"));
   }
 
-  onFormSubmit(form: Todo) {
+  onFormSubmit(form: any) {
+    form = { ...form, status:"incomplete",}
     this.dataService.addTodo(form).subscribe(result => {
-    });
+      console.log(result);
+      this.refreshTodos();
+    }, err => console.log(err));
 
   }
 
   toggleCompleted(todo: any) {
-    todo.status = todo.status == 'completed'? 'completed' : 'incomplete';
+    console.log(todo);
+    todo.status = todo.status == 'complete'? 'incomplete' : 'complete';
+    console.log(todo.status);
+    this.dataService.updateStatus(todo)
+    .subscribe(res => {
+      console.log(res['message']);
+      this.refreshTodos();
+    }, err => console.log(err))
   }
 
   editTodo(todo: Todo) {
@@ -49,6 +61,7 @@ export class TodosComponent implements OnInit {
       if (result) {
         this.dataService.updateTodo(result).subscribe(res =>{
           console.log(res['message']);
+          this.refreshTodos();
         })
       }
     })
@@ -56,8 +69,15 @@ export class TodosComponent implements OnInit {
 
   deleteTodo(todo: any) {
     this.dataService.deleteTodo(todo).subscribe(result => {
+<<<<<<< HEAD
       console.log(result)
     });
+=======
+      console.log(result['message']);
+      this.todos.splice(this.todos.indexOf(todo),1);
+      this.refreshTodos();
+    }, err => console.log(err));
+>>>>>>> b31949fe9be23450b40485e8ddf12516f4e7cf9c
   }
   
 }
