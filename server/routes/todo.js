@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.get('/', todoController.getTodos);
 router.post('/', todoController.createTodo);
+router.put('/togStat', todoController.updateStatus);
+
 router.put('/', todoController.updateTodo);
 router.delete('/', todoController.deleteTodo);
 
