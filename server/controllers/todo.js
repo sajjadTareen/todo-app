@@ -59,11 +59,7 @@ exports.deleteTodo = async (req, res, next) => {
     if (!req.query.id){
         return res.status(400).json({status: 400, message: 'Id must be present'});
     }
-<<<<<<< HEAD
-    const id = req.query.id;
-=======
     
->>>>>>> b31949fe9be23450b40485e8ddf12516f4e7cf9c
     try{
         const id = req.query.id;
         const todo = await Todo.findByPk(id);

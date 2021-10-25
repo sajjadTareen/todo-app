@@ -26,7 +26,7 @@ export class TodosComponent implements OnInit {
   refreshTodos(): void{
     this.dataService.getAllTodos().subscribe(res => {
       if (res['status'] == 200){
-l        
+        
       }
       }, err => console.log("THIS IS ERROR"));
   }
@@ -69,15 +69,10 @@ l
 
   deleteTodo(todo: any) {
     this.dataService.deleteTodo(todo).subscribe(result => {
-<<<<<<< HEAD
-      console.log(result)
-    });
-=======
       console.log(result['message']);
       this.todos.splice(this.todos.indexOf(todo),1);
       this.refreshTodos();
     }, err => console.log(err));
->>>>>>> b31949fe9be23450b40485e8ddf12516f4e7cf9c
   }
   
 }
