@@ -1,5 +1,5 @@
 const User = require('../models/user');
-const jwt = require('jasonwebtoken');
+const jwt = require('jsonwebtoken');
 
 const secretKey = 'node-todo-app'
 
@@ -20,7 +20,7 @@ exports.loginUser = async (req, res, next) => {
 
         user = {
             id: _user.id,
-            username: username
+            username: userName
         }
 
     }catch(e){
@@ -36,3 +36,10 @@ exports.loginUser = async (req, res, next) => {
     
 };
 
+exports.registerUser = async (req, res, next) => {
+    console.log("Register Route Controller");
+};
+
+exports.logoutUser = async (req, res, next) => {
+    console.log("Logout Route Controller");
+};
