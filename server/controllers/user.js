@@ -37,7 +37,29 @@ exports.loginUser = async (req, res, next) => {
 };
 
 exports.registerUser = async (req, res, next) => {
-    console.log("Register Route Controller");
+    try{
+        const taken = await User.findAll({ where: { username: req.body.username }});
+        if (taken[0]){
+            return res.status(400).json({status:400, message:'Username already taken'});
+        }
+    }catch(e){
+        return res.status(400).json({status:400, message: e.message});
+    }
+
+    const user = {
+        name: req.body.name,
+        username: req.body.username,
+        password: req.body.password
+    }
+
+    try{
+        const result = await User.create(user);
+        return res.status(200).json({status:200, data: result, message: 'User registered successfully'});
+    }catch(e){
+        return res.status(400).json({status:400, message: e.message});
+    }
+
+
 };
 
 exports.logoutUser = async (req, res, next) => {
