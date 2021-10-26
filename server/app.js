@@ -30,14 +30,6 @@ Todo.belongsTo(User, {constraints: true, onDelete: 'CASCADE'});
 User.hasMany(Todo);
 
 sequelize.sync()
-.then(result => {
- return User.findByPk(1)
-})
-.then(user => {
-  if(!user){
-    return User.create({username: 'sajjadTareen', password: 'sajjad', name: 'Sajjad Tareen'});
-  }
-})
 .then(result => app.listen(3000))
 .catch(err => console.log(err));
 
